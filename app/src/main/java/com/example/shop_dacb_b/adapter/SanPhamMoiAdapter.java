@@ -2,6 +2,7 @@ package com.example.shop_dacb_b.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shop_dacb_b.Interface.ItemClickListener;
 import com.example.shop_dacb_b.R;
 //import com.example.shop_dacb_b.activity.ChiTietActivity;
@@ -44,6 +46,9 @@ public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.My
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         //chú ý chỗ này parse
         holder.txtgia.setText("Giá: "+decimalFormat.format(sanPhamMoi.getPrice())+ "Đ");
+
+
+        //images base64
         Glide.with(context).load(sanPhamMoi.getImage()).into(holder.imghinhanh);
 //        holder.setItemClickListener(new ItemClickListener() {
 //            @Override

@@ -11,21 +11,15 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiBanHang {
 
     @GET("api/Products/GetAll")
     Call<List<SanPhamMoi>> getProducts();
-//
-//    @GET("getspmoi.php")
-//    Observable<SanPhamMoiModel> getSpMoi();
-//
-//    @POST("chitiet.php")
-//    @FormUrlEncoded
-//    Observable<SanPhamMoiModel> getSanPham(
-//            @Field("page") int page,
-//            @Field("loai") int loai
-//    );
+
+    @GET("api/Products/SearchByCategory/{categoryId}")
+    Call<List<SanPhamMoi>> getProductByCate(@Path("categoryId") int loai);
 //
 //    @POST("dangki.php")
 //    @FormUrlEncoded
