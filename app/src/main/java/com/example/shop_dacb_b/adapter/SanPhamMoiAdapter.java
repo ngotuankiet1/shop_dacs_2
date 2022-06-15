@@ -49,7 +49,11 @@ public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.My
 
 
         //images base64
-        Glide.with(context).load(sanPhamMoi.getImage()).into(holder.imghinhanh);
+        final String encodedString = "data:image/jpg;base64,"+sanPhamMoi.getImage();
+        final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
+        final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+        Glide.with(context).load(decodedBytes).fitCenter().into(holder.imghinhanh);
+//        Glide.with(context).load(sanPhamMoi.getImage()).into(holder.imghinhanh);
 //        holder.setItemClickListener(new ItemClickListener() {
 //            @Override
 //            public void onClick(View view, int pos, boolean isLongClick) {

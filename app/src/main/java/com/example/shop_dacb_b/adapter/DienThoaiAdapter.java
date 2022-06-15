@@ -2,6 +2,7 @@ package com.example.shop_dacb_b.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,12 @@ public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         myViewHolder.giasp.setText("Giá: "+decimalFormat.format(sanPham.getPrice())+ "Đ");
         myViewHolder.mota.setText(sanPham.getDescription());
-        Glide.with(context).load(sanPham.getImage()).into(myViewHolder.hinhanh);
+
+
+        final String encodedString = "data:image/jpg;base64,"+sanPham.getImage();
+        final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
+        final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+        Glide.with(context).load(decodedBytes).fitCenter().into(((MyViewHolder) holder).hinhanh);
     }
 
     @Override
