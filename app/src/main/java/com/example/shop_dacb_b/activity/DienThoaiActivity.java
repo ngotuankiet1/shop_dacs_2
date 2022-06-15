@@ -35,9 +35,13 @@ public class DienThoaiActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     ApiBanHang apiBanHang;
+    int page = 1;
     int loai;
     DienThoaiAdapter adapterDt;
     List<SanPhamMoi> sanPhamMoiList;
+    LinearLayoutManager linearLayoutManager;
+    Handler handler = new Handler();
+    Boolean isloading = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +51,52 @@ public class DienThoaiActivity extends AppCompatActivity {
         loai = getIntent().getIntExtra("loai",2);
         Anhxa();
         ActionTooBar();
-        getData();
+        getData(page);
+        addEventLoad();
     }
 
-    private void getData() {
+    private void addEventLoad() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(isloading == false){
+                    if(linearLayoutManager.findLastCompletelyVisibleItemPosition() == sanPhamMoiList.size()-1){
+                        isloading = true;
+//                        loadMore();
+                    }
+                }
+            }
+        });
+    }
+
+    private void loadMore() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                sanPhamMoiList.add(null);
+                adapterDt.notifyItemInserted(sanPhamMoiList.size()-1);
+            }
+        });
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sanPhamMoiList.remove(sanPhamMoiList.size()-1);
+                adapterDt.notifyItemRemoved(sanPhamMoiList.size());
+                page = page + 1;
+                getData(page);
+                adapterDt.notifyDataSetChanged();
+                isloading = false;
+            }
+        },2000);
+    }
+
+    private void getData(int page) {
         Call<List<SanPhamMoi>> call = apiBanHang.getProductByCate(loai);
         call.enqueue(new Callback<List<SanPhamMoi>>() {
             @Override
@@ -60,7 +106,6 @@ public class DienThoaiActivity extends AppCompatActivity {
                 adapterDt = new DienThoaiAdapter(getApplicationContext(), sanPhamMoiList);
                 recyclerView.setAdapter(adapterDt);
             }
-
             @Override
             public void onFailure(Call<List<SanPhamMoi>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),"không kết nối được server",Toast.LENGTH_LONG).show();
@@ -72,13 +117,19 @@ public class DienThoaiActivity extends AppCompatActivity {
     private void ActionTooBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void Anhxa() {
         toolbar = findViewById(R.id.toobar);
         recyclerView = findViewById(R.id.recyclerView_dt);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         sanPhamMoiList = new ArrayList<>();
     }

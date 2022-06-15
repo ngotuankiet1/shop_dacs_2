@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.shop_dacb_b.Interface.ItemClickListener;
 import com.example.shop_dacb_b.R;
 //import com.example.shop_dacb_b.activity.ChiTietActivity;
+import com.example.shop_dacb_b.activity.ChiTietActivity;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 
 import java.text.DecimalFormat;
@@ -25,33 +26,70 @@ import java.util.List;
 public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<SanPhamMoi> array;
+    private static final int VIEW_TYPE_DATA = 0;
+    private static final int VIEW_TYPE_LOADING = 1;
 
     public DienThoaiAdapter(Context context, List<SanPhamMoi> array) {
         this.context = context;
         this.array = array;
     }
 
+    public class LoadingViewHolder extends RecyclerView.ViewHolder{
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progressbar);
+
+        }
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dienthoai,parent,false);
-        return new MyViewHolder(view);
+        if(viewType == VIEW_TYPE_DATA){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dienthoai,parent,false);
+            return new MyViewHolder(view);
+        }else{
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading,parent,false);
+            return new LoadingViewHolder(view);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        MyViewHolder myViewHolder = (MyViewHolder) holder;
-        SanPhamMoi sanPham = array.get(position);
-        myViewHolder.tensp.setText(sanPham.getName().trim());
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        myViewHolder.giasp.setText("Giá: "+decimalFormat.format(sanPham.getPrice())+ "Đ");
-        myViewHolder.mota.setText(sanPham.getDescription());
+        if(holder instanceof  MyViewHolder){
+            MyViewHolder myViewHolder = (MyViewHolder) holder;
+            SanPhamMoi sanPham = array.get(position);
+            myViewHolder.tensp.setText(sanPham.getName().trim());
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            myViewHolder.giasp.setText("Giá: "+decimalFormat.format(sanPham.getPrice())+ "Đ");
+            myViewHolder.mota.setText(sanPham.getDescription());
 
+            final String encodedString = "data:image/jpg;base64,"+sanPham.getImage();
+            final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
+            final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+            Glide.with(context).load(decodedBytes).fitCenter().into(((MyViewHolder) holder).hinhanh);
+            myViewHolder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int pos, boolean isLongClick) {
+                    if(!isLongClick){
+                        Intent intent = new Intent(context, ChiTietActivity.class);
+                        intent.putExtra("chitiet",sanPham);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                }
+            });
+        }else{
+            LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
+            loadingViewHolder.progressBar.setIndeterminate(true);
+        }
+    }
 
-        final String encodedString = "data:image/jpg;base64,"+sanPham.getImage();
-        final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
-        final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-        Glide.with(context).load(decodedBytes).fitCenter().into(((MyViewHolder) holder).hinhanh);
+    @Override
+    public int getItemViewType(int position) {
+        return array.get(position) == null ? VIEW_TYPE_LOADING:VIEW_TYPE_DATA;
     }
 
     @Override
@@ -59,15 +97,26 @@ public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return array.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tensp,giasp,mota,id;
         ImageView hinhanh;
+        private ItemClickListener itemClickListener;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tensp = itemView.findViewById(R.id.itemdt_ten);
             giasp = itemView.findViewById(R.id.itemdt_gia);
             mota = itemView.findViewById(R.id.itemdt_mota);
             hinhanh = itemView.findViewById(R.id.itemdt_image);
+            itemView.setOnClickListener(this);
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onClick(v,getAdapterPosition(),false);
         }
     }
 }

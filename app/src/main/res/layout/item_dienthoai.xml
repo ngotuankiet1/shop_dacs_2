@@ -19,6 +19,7 @@
             android:layout_weight="3"
             android:src="@drawable/iconnew_w512"
             android:layout_width="0dp"
+          android:layout_marginRight="20dp"
             android:layout_height="100dp"/>
 
         <LinearLayout

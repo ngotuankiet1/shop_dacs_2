@@ -90,8 +90,19 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         Intent laptop = new Intent(getApplicationContext(),DienThoaiActivity.class);
-//                        laptop.putExtra("loai",3);
+                        laptop.putExtra("loai",3);
                         startActivity(laptop);
+                        break;
+                    case 3:
+                        Intent thongtin = new Intent(getApplicationContext(),ThongTinActivity.class);
+                        startActivity(thongtin);
+                        break;
+                    case 4:
+                        Intent lienhe = new Intent(getApplicationContext(),LienHeActivity.class);
+                        startActivity(lienhe);
+                        break;
+                    case 5:
+                        finish();
                         break;
 
                 }
@@ -120,9 +131,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLoaiSanPham() {
-        mangloaisp.add(new LoaiSp("Trang chủ",""));
-        mangloaisp.add(new LoaiSp("Điện thoại",""));
-        mangloaisp.add(new LoaiSp("Laptop",""));
+        mangloaisp.add(new LoaiSp("Trang chủ","https://ngochieu.name.vn/img/home.png"));
+        mangloaisp.add(new LoaiSp("Điện thoại","https://ngochieu.name.vn/img/mobile.png"));
+        mangloaisp.add(new LoaiSp("Laptop","https://ngochieu.name.vn/img/laptop.png"));
+        mangloaisp.add(new LoaiSp("Thông tin","https://ngochieu.name.vn/img/info.png"));
+        mangloaisp.add(new LoaiSp("Liên hệ","https://ngochieu.name.vn/img/contact.png"));
+        mangloaisp.add(new LoaiSp("Đăng xuất","https://png.pngtree.com/png-vector/20190415/ourlarge/pngtree-vector-logout-icon-png-image_939706.jpg"));
     }
 
 
