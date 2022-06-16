@@ -2,6 +2,7 @@ package com.example.shop_dacb_b.retrofit;
 
 import com.example.shop_dacb_b.model.SanPhamMoi;
 import com.example.shop_dacb_b.model.SanPhamMoiModel;
+import com.example.shop_dacb_b.model.User;
 
 import java.util.List;
 
@@ -20,23 +21,16 @@ public interface ApiBanHang {
 
     @GET("api/Products/SearchByCategory/{categoryId}")
     Call<List<SanPhamMoi>> getProductByCate(@Path("categoryId") int loai);
-//
-//    @POST("dangki.php")
-//    @FormUrlEncoded
-//    Observable<UserModel> dangki(
-//            @Field("email") String email,
-//            @Field("pass") String pass,
-//            @Field("username") String username,
-//            @Field("mobile") String mobile
-//    );
-//
-//    @POST("dangnhap.php")
-//    @FormUrlEncoded
-//    Observable<UserModel> dangnhap(
-//            @Field("email") String email,
-//            @Field("pass") String pass
-//    );
-//
+
+    @FormUrlEncoded
+    @POST("api/Accounts/Register")
+    Call<User> registerUser(@Field("email") String email, @Field("username") String username, @Field("password") String pass);
+
+
+    @FormUrlEncoded
+    @POST("api/Accounts/Login")
+    Call<User> LoginUser(@Field("email") String email, @Field("password") String pass);
+
 //    @POST("reset.php")
 //    @FormUrlEncoded
 //    Observable<UserModel> resetPass(
