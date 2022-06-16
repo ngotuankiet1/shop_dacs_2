@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.shop_dacb_b.Interface.ItemClickListener;
 import com.example.shop_dacb_b.R;
 //import com.example.shop_dacb_b.activity.ChiTietActivity;
+import com.example.shop_dacb_b.activity.ChiTietActivity;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 
@@ -53,18 +54,18 @@ public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.My
         final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
         final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
         Glide.with(context).load(decodedBytes).fitCenter().into(holder.imghinhanh);
-//        Glide.with(context).load(sanPhamMoi.getImage()).into(holder.imghinhanh);
-//        holder.setItemClickListener(new ItemClickListener() {
-//            @Override
-//            public void onClick(View view, int pos, boolean isLongClick) {
-//                if(!isLongClick){
-//                    Intent intent = new Intent(context, ChiTietActivity.class);
-//                    intent.putExtra("chitiet",sanPhamMoi);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startActivity(intent);
-//                }
-//            }
-//        });
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int pos, boolean isLongClick) {
+                if(!isLongClick){
+                    Intent intent = new Intent(context, ChiTietActivity.class);
+                    intent.putExtra("chitiet",sanPhamMoi);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

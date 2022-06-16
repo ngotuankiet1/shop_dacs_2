@@ -3,15 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Shop_DACB_B/app/src/main/res/drawable-hdpi/spinner.xml" value="0.13" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.127" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/drawable/ic_baseline_add_location_24.xml" value="0.127" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/drawable/ic_baseline_perm_media_24.xml" value="0.127" />
-        <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_chi_tiet.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_chi_tiet.xml" value="0.2" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_dien_thoai.xml" value="0.2" />
+        <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_gio_hang.xml" value="0.2" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_laptop.xml" value="0.10925925925925926" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/item_dienthoai.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/item_giohang.xml" value="0.26458333333333334" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/item_loading.xml" value="0.26458333333333334" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/item_menu.xml" value="0.26458333333333334" />
         <entry key="..\:/Shop_DACB_B/app/src/main/res/layout/item_sp_moi.xml" value="0.26458333333333334" />

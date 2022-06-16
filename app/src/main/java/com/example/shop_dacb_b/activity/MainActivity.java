@@ -34,6 +34,7 @@ import com.example.shop_dacb_b.retrofit.ApiBanHang;
 import com.example.shop_dacb_b.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 import com.example.shop_dacb_b.retrofit.RetrofitClient;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     List<SanPhamMoi> mangSpMoi;
     SanPhamMoiAdapter spAdapter;
     ApiBanHang apiBanHang;
+    NotificationBadge badge;
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<SanPhamMoi>> call, Response<List<SanPhamMoi>> response) {
                 mangSpMoi = response.body();
 //                Log.e("products",mangSpMoi.size()+"");
-//                int i=0;
                 spAdapter = new SanPhamMoiAdapter(getApplicationContext(),mangSpMoi);
                 recyclerViewManHinhChinh.setAdapter(spAdapter);
             }
@@ -172,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        mangloaisp = new ArrayList<>();
+        mangSpMoi = new ArrayList<>();
         toolbar = findViewById(R.id.toobarmanhinhchinh);
         viewFlipper = findViewById(R.id.viewlipper);
         recyclerViewManHinhChinh = findViewById(R.id.recyclerView);
@@ -181,11 +185,38 @@ public class MainActivity extends AppCompatActivity {
         listViewManHinhChinh = findViewById(R.id.listviewmanhinhchinh);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawerLayout);
-
-        mangloaisp = new ArrayList<>();
-        mangSpMoi = new ArrayList<>();
+        badge = findViewById(R.id.menu_sl);
+        frameLayout = findViewById(R.id.framegiohang);
+        //==============================================không đụng
         loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(),mangloaisp);
         listViewManHinhChinh.setAdapter(loaiSpAdapter);
+
+        if(Utils.manggiohang == null){
+            Utils.manggiohang = new ArrayList<>();
+        }else{
+            int totalItem = 0;
+            for(int i =0;i<Utils.manggiohang.size();i++){
+                totalItem = totalItem+ Utils.manggiohang.get(i).getSoluong();
+            }
+            badge.setText(String.valueOf(totalItem));
+        }
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent giohang = new Intent(getApplicationContext(),GioHangActivity.class);
+                startActivity(giohang);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int totalItem = 0;
+        for(int i =0;i<Utils.manggiohang.size();i++){
+            totalItem = totalItem+ Utils.manggiohang.get(i).getSoluong();
+        }
+        badge.setText(String.valueOf(totalItem));
     }
 
     private boolean isConnected(Context context){
