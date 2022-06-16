@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DangKiActivity extends AppCompatActivity {
-    EditText email,pass,repass,username;
+    EditText email, pass, repass, username;
     AppCompatButton btndangki;
     ApiBanHang apiBanHang;
 
@@ -56,35 +56,40 @@ public class DangKiActivity extends AppCompatActivity {
         String str_pass = pass.getText().toString().trim();
         String str_reapss = repass.getText().toString().trim();
         String str_username = username.getText().toString().trim();
-        if(TextUtils.isEmpty(str_email)){
-            Toast.makeText(getApplicationContext(),"Bạn chưa nhập email",Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(str_pass)){
-            Toast.makeText(getApplicationContext(),"Bạn chưa nhập pass",Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(str_reapss)){
-            Toast.makeText(getApplicationContext(),"Bạn chưa nhập repass",Toast.LENGTH_SHORT).show();
-        }else if(TextUtils.isEmpty(str_username)){
-            Toast.makeText(getApplicationContext(),"Bạn chưa nhập username",Toast.LENGTH_SHORT).show();
-        }else{
-            if(str_pass.equals(str_reapss)){
-                Call<User> call = apiBanHang.registerUser(str_email,str_pass,str_username);
-                call.enqueue(new Callback<User>() {
+        if (TextUtils.isEmpty(str_email)) {
+            Toast.makeText(getApplicationContext(), "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(str_pass)) {
+            Toast.makeText(getApplicationContext(), "Bạn chưa nhập pass", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(str_reapss)) {
+            Toast.makeText(getApplicationContext(), "Bạn chưa nhập repass", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(str_username)) {
+            Toast.makeText(getApplicationContext(), "Bạn chưa nhập username", Toast.LENGTH_SHORT).show();
+        } else {
+            if (str_pass.equals(str_reapss)) {
+                User user = new User(str_email, str_username, str_pass);
+                Call<Void> call = apiBanHang.registerUser(user);
+                call.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Utils.user_current.setEmail(str_email);
-                        Utils.user_current.setPassword(str_pass);
-                        Intent intent = new Intent(getApplicationContext(),DangNhapActivity.class);
-                        startActivity(intent);
-                        finish();
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+//                            Utils.user_current.setEmail(str_email);
+//                            Utils.user_current.setPassword(str_pass);
+                            Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "đăng kí không thành công", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),"không kết nối được server",Toast.LENGTH_LONG).show();
-                        Log.e("Log","error : "+t.getMessage());
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "không kết nối được server", Toast.LENGTH_LONG).show();
+                        Log.e("Log", "error : " + t.getMessage());
                     }
                 });
-            }else{
-                Toast.makeText(getApplicationContext(),"Email hoặc mật khẩu không chính xác",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Email hoặc mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
             }
         }
     }

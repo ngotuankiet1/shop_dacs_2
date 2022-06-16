@@ -8,9 +8,12 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -22,14 +25,20 @@ public interface ApiBanHang {
     @GET("api/Products/SearchByCategory/{categoryId}")
     Call<List<SanPhamMoi>> getProductByCate(@Path("categoryId") int loai);
 
-    @FormUrlEncoded
     @POST("api/Accounts/Register")
-    Call<User> registerUser(@Field("email") String email, @Field("username") String username, @Field("password") String pass);
+    Call<Void> registerUser(@Body User user);
 
+//    @FormUrlEncoded
+//    @POST("api/Accounts/Register")
+//    Call<Void> registerUser(
+//            @Field("email") String email,
+//            @Field("username") String username,
+//            @Field("password") String password
+//                            );
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
     @POST("api/Accounts/Login")
-    Call<User> LoginUser(@Field("email") String email, @Field("password") String pass);
+    Call<Void> LoginUser(@Body User user);
 
 //    @POST("reset.php")
 //    @FormUrlEncoded

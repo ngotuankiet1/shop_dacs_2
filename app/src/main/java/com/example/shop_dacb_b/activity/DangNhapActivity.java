@@ -65,23 +65,21 @@ public class DangNhapActivity extends AppCompatActivity {
                 }else{
 //                    Paper.book().write("email", str_email);
 //                    Paper.book().write("pass", str_pass);
-
-                    Call<User> call = apiBanHang.LoginUser(str_email,str_pass);
-                    call.enqueue(new Callback<User>() {
+                    Call<Void> call = apiBanHang.LoginUser(new User(str_email, "", str_pass));
+                    call.enqueue(new Callback<Void>() {
                         @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-//                            Log.e("Success_api",response.code());
-                            if(response.code() == 200){
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.isSuccessful()){
                                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             }else{
-                                Toast.makeText(getApplicationContext(),"không thành công",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"không thành công",Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
+                        public void onFailure(Call<Void> call, Throwable t) {
                             Toast.makeText(getApplicationContext(),"không kết nối được server",Toast.LENGTH_LONG).show();
                             Log.e("Log","error : "+t.getMessage());
                         }
