@@ -16,6 +16,8 @@ import com.example.shop_dacb_b.R;
 import com.example.shop_dacb_b.model.User;
 import com.example.shop_dacb_b.retrofit.ApiBanHang;
 import com.example.shop_dacb_b.retrofit.RetrofitClient;
+import com.example.shop_dacb_b.utils.GlobalVar;
+import com.example.shop_dacb_b.utils.JwtUtils;
 import com.example.shop_dacb_b.utils.Utils;
 
 import java.util.List;
@@ -63,13 +65,21 @@ public class DangNhapActivity extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(str_pass)){
                     Toast.makeText(getApplicationContext(),"Bạn chưa nhập pass",Toast.LENGTH_SHORT).show();
                 }else{
-//                    Paper.book().write("email", str_email);
-//                    Paper.book().write("pass", str_pass);
-                    Call<Void> call = apiBanHang.LoginUser(new User(str_email, "", str_pass));
-                    call.enqueue(new Callback<Void>() {
+                    Paper.book().write("email", str_email);
+                    Paper.book().write("pass", str_pass);
+                    Call<String> call = apiBanHang.LoginUser(new User(str_email, "", str_pass));
+                    call.enqueue(new Callback<String>() {
                         @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
+                        public void onResponse(Call<String> call, Response<String> response) {
                             if(response.isSuccessful()){
+                                String token = response.body();
+
+                                GlobalVar.getInstance().token = token;
+                                try {
+                                    JwtUtils.decoded(token);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -79,7 +89,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
+                        public void onFailure(Call<String> call, Throwable t) {
                             Toast.makeText(getApplicationContext(),"không kết nối được server",Toast.LENGTH_LONG).show();
                             Log.e("Log","error : "+t.getMessage());
                         }
@@ -91,10 +101,26 @@ public class DangNhapActivity extends AppCompatActivity {
 
 
     private void initView() {
+        Paper.init(this);
         txtdangki = findViewById(R.id.txtdangki);
         txtresetpass = findViewById(R.id.txtresetpass);
         email = findViewById(R.id.email);
         pass = findViewById(R.id.pass);
         btndangnhap = findViewById(R.id.btndangnhap);
+
+
+        if(Paper.book().read("email") != null && Paper.book().read("pass") != null){
+            email.setText(Paper.book().read("email"));
+            pass.setText(Paper.book().read("pass"));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Utils.user_current.getEmail() != null && Utils.user_current.getPassword() != null){
+            email.setText(Utils.user_current.getEmail());
+            pass.setText(Utils.user_current.getPassword());
+        }
     }
 }

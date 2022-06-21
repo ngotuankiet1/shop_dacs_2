@@ -1,5 +1,6 @@
 package com.example.shop_dacb_b.retrofit;
 
+import com.example.shop_dacb_b.model.Order;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 import com.example.shop_dacb_b.model.SanPhamMoiModel;
 import com.example.shop_dacb_b.model.User;
@@ -38,12 +39,16 @@ public interface ApiBanHang {
 
 //    @FormUrlEncoded
     @POST("api/Accounts/Login")
-    Call<Void> LoginUser(@Body User user);
+    Call<String> LoginUser(@Body User user);
 
 //    @POST("reset.php")
 //    @FormUrlEncoded
 //    Observable<UserModel> resetPass(
 //            @Field("email") String email
 //    );
+
+    // Create order
+    @POST("api/Orders/Create")
+    Call<Boolean> createOrder(@Body Order order);
 
 }

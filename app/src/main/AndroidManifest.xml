@@ -16,21 +16,23 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.DangNhapActivity"
+            android:name=".activity.ThanhToanActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:exported="true">
-
+            android:exported="false" />
+        <activity
+            android:name=".activity.DangNhapActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.DangKiActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".activity.GioHangActivity"
             android:exported="false"
@@ -54,9 +56,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

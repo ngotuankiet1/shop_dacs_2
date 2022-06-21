@@ -72,8 +72,8 @@ public class DangKiActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
-//                            Utils.user_current.setEmail(str_email);
-//                            Utils.user_current.setPassword(str_pass);
+                            Utils.user_current.setEmail(str_email);
+                            Utils.user_current.setPassword(str_pass);
                             Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
                             startActivity(intent);
                             finish();

@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(lienhe);
                         break;
                     case 5:
+                        Intent login = new Intent(getApplicationContext(),DangNhapActivity.class);
+                        startActivity(login);
                         finish();
                         break;
 

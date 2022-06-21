@@ -69,7 +69,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
                         holder.item_giohang_soluong.setText(giohangList.get(pos).getSoluong()+ " ");
                         long gia = giohangList.get(pos).getSoluong() * giohangList.get(pos).getPrice();
-                        holder.item_giohang_giasp2.setText(decimalFormat.format(gia));
+                        holder.item_giohang_giasp2.setText(decimalFormat.format(gia) + "Đ" );
                         EventBus.getDefault().postSticky(new TinhTongEvent());
                     }else if(giohangList.get(pos).getSoluong() == 1){
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
@@ -98,7 +98,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                     }
                     holder.item_giohang_soluong.setText(giohangList.get(pos).getSoluong()+ " ");
                     long gia = giohangList.get(pos).getSoluong() * giohangList.get(pos).getPrice();
-                    holder.item_giohang_giasp2.setText(decimalFormat.format(gia));
+                    holder.item_giohang_giasp2.setText(decimalFormat.format(gia) + "Đ" );
                     EventBus.getDefault().postSticky(new TinhTongEvent());
                 }
             }
