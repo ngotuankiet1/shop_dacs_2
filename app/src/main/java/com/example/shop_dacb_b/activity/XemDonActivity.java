@@ -81,7 +81,6 @@ public class XemDonActivity extends AppCompatActivity {
                     GetData(donhang.getId(), i);
                 }
                 Log.e("size : ",manghoadon.size()+ " ");
-
             }
             @Override
             public void onFailure(Call<List<Donhang>> call, Throwable t) {

@@ -39,7 +39,7 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Donhang donhang = listdonhang.get(position);
-        holder.txtdonhang.setText(donhang.getId() + " ");
+        holder.txtdonhang.setText("Đơn hàng: "+donhang.getId() + " ");
         if (donhang.isStatus()) {
             holder.txttrangthai.setTextColor(Color.parseColor("#08d57f"));
             holder.txttrangthai.setText("Hoàn thành");

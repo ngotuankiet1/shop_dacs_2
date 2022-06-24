@@ -50,6 +50,10 @@
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
+            android:name=".activity.LienHeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name=".activity.ChiTietActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
