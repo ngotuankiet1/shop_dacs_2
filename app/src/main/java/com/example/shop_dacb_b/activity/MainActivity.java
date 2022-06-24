@@ -31,6 +31,7 @@ import com.example.shop_dacb_b.model.LoaiSp;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 import com.example.shop_dacb_b.model.SanPhamMoiModel;
 import com.example.shop_dacb_b.retrofit.ApiBanHang;
+import com.example.shop_dacb_b.utils.GlobalVar;
 import com.example.shop_dacb_b.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 import com.example.shop_dacb_b.retrofit.RetrofitClient;
@@ -59,11 +60,15 @@ public class MainActivity extends AppCompatActivity {
     ApiBanHang apiBanHang;
     NotificationBadge badge;
     FrameLayout frameLayout;
+    ImageView imgsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("Abc", "onCreate: " + GlobalVar.getInstance().uid);
+        Log.d("Abc", "onCreate: " + GlobalVar.getInstance().token);
+
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         Anhxa();
         ActionBar();
@@ -105,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(lienhe);
                         break;
                     case 5:
+                        Intent donhang = new Intent(getApplicationContext(),XemDonActivity.class);
+                        startActivity(donhang);
+                        break;
+                    case 6:
                         Intent login = new Intent(getApplicationContext(),DangNhapActivity.class);
                         startActivity(login);
                         finish();
@@ -140,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mangloaisp.add(new LoaiSp("Laptop","https://ngochieu.name.vn/img/laptop.png"));
         mangloaisp.add(new LoaiSp("Thông tin","https://ngochieu.name.vn/img/info.png"));
         mangloaisp.add(new LoaiSp("Liên hệ","https://ngochieu.name.vn/img/contact.png"));
+        mangloaisp.add(new LoaiSp("Đơn hàng","https://r1.tichluy.vn/Content/mobile/img/note.png?v=r4634&t=637910478227240013"));
         mangloaisp.add(new LoaiSp("Đăng xuất","https://png.pngtree.com/png-vector/20190415/ourlarge/pngtree-vector-logout-icon-png-image_939706.jpg"));
     }
 
@@ -178,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
     private void Anhxa() {
         mangloaisp = new ArrayList<>();
         mangSpMoi = new ArrayList<>();
+        imgsearch = findViewById(R.id.imgsearch);
         toolbar = findViewById(R.id.toobarmanhinhchinh);
         viewFlipper = findViewById(R.id.viewlipper);
         recyclerViewManHinhChinh = findViewById(R.id.recyclerView);
@@ -207,6 +218,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent giohang = new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(giohang);
+            }
+        });
+        imgsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                startActivity(intent);
             }
         });
     }

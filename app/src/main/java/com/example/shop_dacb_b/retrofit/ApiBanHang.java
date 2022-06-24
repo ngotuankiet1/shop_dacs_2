@@ -1,6 +1,9 @@
 package com.example.shop_dacb_b.retrofit;
 
+import com.example.shop_dacb_b.model.Donhang;
+import com.example.shop_dacb_b.model.Item;
 import com.example.shop_dacb_b.model.Order;
+import com.example.shop_dacb_b.model.SanPhamDonHang;
 import com.example.shop_dacb_b.model.SanPhamMoi;
 import com.example.shop_dacb_b.model.SanPhamMoiModel;
 import com.example.shop_dacb_b.model.User;
@@ -50,5 +53,17 @@ public interface ApiBanHang {
     // Create order
     @POST("api/Orders/Create")
     Call<Boolean> createOrder(@Body Order order);
+
+    //Get order
+    @GET("api/Orders/GetByUserId/{userId}")
+    Call<List<Donhang>> getOrder(@Path("userId") String groupId, @Header("Authorization") String authheader);
+
+    //Get desc order
+    @GET("api/Orders/GetById/{id}")
+    Call<Donhang> getOrderDetails(@Path("id") int id, @Header("Authorization") String authheader);
+
+//    Search products
+    @GET("api/Products/SearchByName/{name}")
+    Call<List<SanPhamMoi>> seach(@Path("name") String keySearch);
 
 }

@@ -16,9 +16,17 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".activity.XemDonActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name=".activity.ThanhToanActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".activity.DangNhapActivity"
             android:exported="true"
@@ -56,7 +64,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
     </application>
 
 </manifest>
