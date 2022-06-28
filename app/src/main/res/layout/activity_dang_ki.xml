@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:padding="5dp"
         android:layout_gravity="center"
-        android:text="Đăng Kí"
+        android:text="Đăng Ký"
         android:gravity="center"
         android:textColor="#03A9F4"
         android:textSize="40sp"
@@ -51,7 +51,7 @@
             android:layout_marginRight="10dp"
             android:inputType="text"
             android:drawablePadding="5dp"
-            android:hint="Username"
+            android:hint="Tên người dùng"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -70,7 +70,7 @@
             android:layout_marginRight="10dp"
             android:inputType="textPassword"
             android:drawablePadding="5dp"
-            android:hint="Pass"
+            android:hint="Nhập mật khẩu"
             android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -89,7 +89,7 @@
             android:layout_marginRight="10dp"
             android:drawablePadding="5dp"
             android:inputType="textPassword"
-            android:hint="Confirm pass"
+            android:hint="Nhập lại mật khẩu"
             android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

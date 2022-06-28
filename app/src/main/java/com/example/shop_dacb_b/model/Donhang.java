@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Donhang {
     int id;
-    boolean status;
+    Boolean status = null;
     List<SanPhamDonHang> products;
 
     public Donhang() {
@@ -29,13 +29,21 @@ public class Donhang {
         this.id = id;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    //    public boolean isStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(boolean status) {
+//        this.status = status;
+//    }
 
     public List<SanPhamDonHang> getProducts() {
         return products;

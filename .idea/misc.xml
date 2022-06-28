@@ -3,9 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/drawable-hdpi/spinner.xml" value="0.1285" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1285" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.1285" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/drawable/spinner.xml" value="0.1285" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_chi_tiet.xml" value="0.25" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_dang_ki.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_dang_nhap.xml" value="0.19537037037037036" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_dien_thoai.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_gio_hang.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_laptop.xml" value="0.26458333333333334" />
         <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_lien_he.xml" value="0.2" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_search.xml" value="0.19537037037037036" />
         <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/activity_thong_tin.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/item_chitiet.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/item_dienthoai.xml" value="0.19537037037037036" />
         <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/item_donhang.xml" value="0.26458333333333334" />
+        <entry key="..\:/Shop_DACB_B (main)/app/src/main/res/layout/item_giohang.xml" value="0.264" />
         <entry key="..\:/Shop_DACB_B - Copy (lam order)/app/src/main/res/layout/activity_xem_don.xml" value="0.26458333333333334" />
         <entry key="..\:/Shop_DACB_B - Copy (lam order)/app/src/main/res/layout/item_chitiet.xml" value="0.19537037037037036" />
         <entry key="..\:/Shop_DACB_B - Copy (lam order)/app/src/main/res/layout/item_donhang.xml" value="0.26458333333333334" />

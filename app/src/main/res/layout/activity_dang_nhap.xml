@@ -51,7 +51,7 @@
             android:layout_marginRight="10dp"
             android:drawablePadding="5dp"
             android:inputType="textPassword"
-            android:hint="Pass"
+            android:hint="Mật khẩu"
             android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

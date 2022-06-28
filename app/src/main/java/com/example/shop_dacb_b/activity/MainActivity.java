@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(dienthoai);
                         break;
                     case 2:
-                        Intent laptop = new Intent(getApplicationContext(),DienThoaiActivity.class);
-                        laptop.putExtra("loai",3);
+                        Intent laptop = new Intent(getApplicationContext(),LaptopActivity.class);
+                        laptop.putExtra("loai",4);
                         startActivity(laptop);
                         break;
                     case 3:
@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(login);
                         finish();
                         break;
-
                 }
             }
         });
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     private void getLoaiSanPham() {
         mangloaisp.add(new LoaiSp("Trang chủ","https://ngochieu.name.vn/img/home.png"));
         mangloaisp.add(new LoaiSp("Điện thoại","https://ngochieu.name.vn/img/mobile.png"));
-        mangloaisp.add(new LoaiSp("Laptop","https://ngochieu.name.vn/img/laptop.png"));
+        mangloaisp.add(new LoaiSp("Phụ kiện","https://demo2.bmconnect.vn/upload/product/pscateicon1552758021612-2645.png"));
         mangloaisp.add(new LoaiSp("Thông tin","https://ngochieu.name.vn/img/info.png"));
         mangloaisp.add(new LoaiSp("Liên hệ","https://ngochieu.name.vn/img/contact.png"));
         mangloaisp.add(new LoaiSp("Đơn hàng","https://r1.tichluy.vn/Content/mobile/img/note.png?v=r4634&t=637910478227240013"));

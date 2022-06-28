@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
-        app:title="Điện thoại"
+        app:title="Trang tìm kiếm"
         android:background="#B2B4C1"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"

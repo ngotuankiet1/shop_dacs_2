@@ -20,7 +20,7 @@ public class LienHeActivity extends AppCompatActivity {
                 "\n" +
                 "Điện thoại: 012345678\n" +
                 "\n" +
-                "Email: linhkiendienthoai@gamil.com";
+                "Email: linhkiendienthoai@gmail.com";
 
         txtLienheApp.setText(lienhe);
     }

@@ -2,6 +2,7 @@ package com.example.shop_dacb_b.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,6 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
     private  RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     Context context;
     List<Donhang> listdonhang;
-
     public DonHangAdapter(Context context, List<Donhang> listdonhang) {
         this.context = context;
         this.listdonhang = listdonhang;
@@ -40,12 +40,25 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Donhang donhang = listdonhang.get(position);
         holder.txtdonhang.setText("Đơn hàng: "+donhang.getId() + " ");
-        if (donhang.isStatus()) {
+//        if (donhang.isStatus() == true) {
+//            holder.txttrangthai.setTextColor(Color.parseColor("#08d57f"));
+//            holder.txttrangthai.setText("Hoàn thành");
+//        }else if(donhang.isStatus() == false){
+//            holder.txttrangthai.setTextColor(Color.parseColor("#ffd700"));
+//            holder.txttrangthai.setText("Đang chờ duyệt");
+//        } else{
+//            holder.txttrangthai.setTextColor(Color.parseColor("#ff0000"));
+//            holder.txttrangthai.setText("Đã hủy");
+//        }
+        if(donhang.getStatus() == null){
+            holder.txttrangthai.setTextColor(Color.parseColor("#ff0000"));
+            holder.txttrangthai.setText("Đã hủy");
+        }else if (donhang.getStatus() == false){
+            holder.txttrangthai.setTextColor(Color.parseColor("#ffd700"));
+            holder.txttrangthai.setText("Đang chờ duyệt");
+        }else{
             holder.txttrangthai.setTextColor(Color.parseColor("#08d57f"));
             holder.txttrangthai.setText("Hoàn thành");
-        } else {
-            holder.txttrangthai.setTextColor(Color.parseColor("#fbc02d"));
-            holder.txttrangthai.setText("Đang vận chuyển");
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 holder.reChitiet.getContext(),
